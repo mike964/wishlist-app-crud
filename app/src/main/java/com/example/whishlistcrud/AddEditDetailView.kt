@@ -25,12 +25,14 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 
 @Composable
 fun AddEditDetailView(
     id: Long,
     viewModel: WishViewModel,
+    wishlistVM: WishlistViewModel = viewModel(),
     navController: NavController,
 ) {
     Scaffold(
@@ -72,9 +74,10 @@ fun AddEditDetailView(
                 if (viewModel.wishTitleState.isNotEmpty() &&
                     viewModel.wishDescriptionState.isNotEmpty()
                 ) {
-                    //TODO UpdateWish
+                    wishlistVM.addWish("New Shit", "SUk dick ")
+                    navController.navigate(Screen.HomeScreen.route)
                 } else {
-                    // TODO AddWish
+                    wishlistVM.addWish("New Shit", "SUk dick ")
                 }
             }) {
                 Text(
@@ -117,7 +120,6 @@ fun WishTextField(
 //        )
     )
 }
-
 
 
 @Preview

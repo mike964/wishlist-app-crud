@@ -1,51 +1,52 @@
 package com.example.whishlistcrud.data
 
-data class Wish(
-    val id: Long = 0L,
+data class WishItem(
+    val id: String = "",
     val title: String = "",
     val description: String = "",
+    var checked: Boolean = false
 )
 
-object DummyWish {
+object DummyWishItem {
     val wishList = listOf(
-        Wish(
+        WishItem(
             title = "Google Watch 2",
             description = "An android Watch"
         ),
-        Wish(
+        WishItem(
             title = "Oculus Quest 2",
             description = "A VR headset for playing games"
         ),
-        Wish(
+        WishItem(
             title = "A Sci-fi, Book",
             description = "A science friction book from any best seller"
         ),
-        Wish(
+        WishItem(
             title = "Bean bag",
             description = "A comfy bean bag to substitute for a chair"
         ),
-        Wish(
+        WishItem(
             title = "Bean bag",
             description = "A comfy bean bag to substitute for a chair"
         ),
-        Wish(
+        WishItem(
             title = "Bean bag",
             description = "A comfy bean bag to substitute for a chair"
         ),
-        Wish(
+        WishItem(
             title = "Bean bag",
             description = "A comfy bean bag to substitute for a chair"
         ),
-        Wish(
+        WishItem(
             title = "Bean bag",
             description = "A comfy bean bag to substitute for a chair"
-        ), Wish(
+        ), WishItem(
             title = "Bean bag",
             description = "A comfy bean bag to substitute for a chair"
-        ), Wish(
+        ), WishItem(
             title = "Bean bag",
             description = "A comfy bean bag to substitute for a chair"
-        ), Wish(
+        ), WishItem(
             title = "Bean bag",
             description = "A comfy bean bag to substitute for a chair"
         )

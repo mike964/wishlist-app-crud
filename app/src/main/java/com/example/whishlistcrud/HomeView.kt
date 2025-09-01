@@ -19,33 +19,37 @@ import androidx.compose.material3.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.LargeFloatingActionButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import com.example.whishlistcrud.data.DummyWish
-import com.example.whishlistcrud.data.Wish
+import com.example.whishlistcrud.data.WishItem
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeView(
     navController: NavController,
-    viewModel: WishViewModel,
+    viewModel: WishViewModel = viewModel(),
+    wishlistVM: WishlistViewModel = viewModel(),
 ) {
+
+    val wishlist by wishlistVM.wishlist.collectAsState()
     val context = LocalContext.current
+
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -58,7 +62,8 @@ fun HomeView(
                 },
                 navigationIcon = {
                     IconButton(onClick = {
-                        Toast.makeText(context, "Button Clicked", Toast.LENGTH_LONG).show() }) {
+                        Toast.makeText(context, "Button Clicked", Toast.LENGTH_LONG).show()
+                    }) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                             contentDescription = "Localized description",
@@ -93,19 +98,20 @@ fun HomeView(
                 .padding(it)
                 .background(color = Color(0xFFECECEC))
         ) {
-            items(DummyWish.wishList) { wish ->
+            items(
+                wishlist
+            ) { wish ->
                 WishItem(wish = wish) {
-
+                    wishlistVM.remove(wish)
                 }
             }
         }
     }
-
 }
 
 
 @Composable
-fun WishItem(wish: Wish, onClick: () -> Unit) {
+fun WishItem(wish: WishItem, onClick: () -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
