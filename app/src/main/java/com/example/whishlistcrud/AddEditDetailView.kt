@@ -32,7 +32,6 @@ import androidx.navigation.NavController
 fun AddEditDetailView(
     id: Long,
     viewModel: WishViewModel,
-    wishlistVM: WishlistViewModel = viewModel(),
     navController: NavController,
 ) {
     Scaffold(
@@ -74,10 +73,10 @@ fun AddEditDetailView(
                 if (viewModel.wishTitleState.isNotEmpty() &&
                     viewModel.wishDescriptionState.isNotEmpty()
                 ) {
-                    wishlistVM.addWish("New Shit", "SUk dick ")
+//                    wishlistVM.addWish("New Shit", "SUk dick ")
                     navController.navigate(Screen.HomeScreen.route)
                 } else {
-                    wishlistVM.addWish("New Shit", "SUk dick ")
+//                    wishlistVM.addWish("New Shit", "SUk dick ")
                 }
             }) {
                 Text(

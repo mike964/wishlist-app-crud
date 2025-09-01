@@ -35,7 +35,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import com.example.whishlistcrud.data.WishItem
+import com.example.whishlistcrud.data.Wish
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -43,10 +43,8 @@ import com.example.whishlistcrud.data.WishItem
 fun HomeView(
     navController: NavController,
     viewModel: WishViewModel = viewModel(),
-    wishlistVM: WishlistViewModel = viewModel(),
 ) {
 
-    val wishlist by wishlistVM.wishlist.collectAsState()
     val context = LocalContext.current
 
 
@@ -98,20 +96,20 @@ fun HomeView(
                 .padding(it)
                 .background(color = Color(0xFFECECEC))
         ) {
-            items(
-                wishlist
-            ) { wish ->
-                WishItem(wish = wish) {
-                    wishlistVM.remove(wish)
-                }
-            }
+//            items(
+//                wishlist
+//            ) { wish ->
+//                WishItem(wish = wish) {
+//                    wishlistVM.remove(wish)
+//                }
+//            }
         }
     }
 }
 
 
 @Composable
-fun WishItem(wish: WishItem, onClick: () -> Unit) {
+fun WishItem(wish: Wish, onClick: () -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
