@@ -1,5 +1,6 @@
 package com.example.whishlistcrud
 
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -56,6 +57,7 @@ class WishViewModel(private val wishRepository: WishRepository = Graph.wishRepos
     }
 
     fun deleteWish(wish: Wish) {
+        Log.d("xxc", wish.toString())
         viewModelScope.launch(Dispatchers.IO) {
             wishRepository.deleteAWish(wish = wish)
             getAllWishes = wishRepository.getWishes()
