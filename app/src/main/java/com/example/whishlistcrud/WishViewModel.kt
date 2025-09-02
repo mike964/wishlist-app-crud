@@ -26,6 +26,11 @@ class WishViewModel(private val wishRepository: WishRepository = Graph.wishRepos
         wishDescriptionState = newString
     }
 
+    fun resetWishTextFields(){
+        wishTitleState = ""
+        wishDescriptionState = ""
+    }
+
     lateinit var getAllWishes: Flow<List<Wish>>
 
     init {

@@ -83,9 +83,8 @@ fun HomeView(
                 containerColor = Color(0xD54555AC), // Background color of the button
                 shape = CircleShape,
                 onClick = {
-                    Toast.makeText(context, "FAButton Clicked", Toast.LENGTH_LONG).show()
-                    navController.navigate(Screen.AddScreen.route)
-                    // TODO Add Navigation to add screen
+//                    Toast.makeText(context, "FAButton Clicked", Toast.LENGTH_LONG).show()
+                    navController.navigate(Screen.AddScreen.route + "/0L")
                 }) {
                 Icon(imageVector = Icons.Default.Add, contentDescription = null)
             }

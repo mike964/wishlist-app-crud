@@ -32,6 +32,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.example.whishlistcrud.Components.WishTextField
 import com.example.whishlistcrud.data.Wish
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -82,7 +83,7 @@ fun AddEditDetailView(
                 if (viewModel.wishTitleState.isNotEmpty() &&
                     viewModel.wishDescriptionState.isNotEmpty()
                 ) {
-                    if(id != 0L){
+                    if (id != 0L) {
                         viewModel.updateWish(
                             Wish(
                                 id = id,
@@ -90,15 +91,18 @@ fun AddEditDetailView(
                                 description = viewModel.wishDescriptionState.trim()
                             )
                         )
-                    }else{
+                    } else {
                         //  AddWish
                         viewModel.addWish(
                             Wish(
                                 title = viewModel.wishTitleState.trim(),
-                                description = viewModel.wishDescriptionState.trim())
+                                description = viewModel.wishDescriptionState.trim()
+                            )
                         )
 //                        snackMessage.value = "Wish has been created"
                     }
+                    viewModel.resetWishTextFields()
+                    navController.navigate(Screen.HomeScreen.route)
                 } else {
 //                   snackMessage.value = "Enter fields to create a wish"
                 }
@@ -118,36 +122,4 @@ fun AddEditDetailView(
 
 }
 
-
-@Composable
-fun WishTextField(
-    label: String,
-    value: String,
-    onValueChanged: (String) -> Unit,
-) {
-    OutlinedTextField(
-        value = value,
-        onValueChange = onValueChanged,
-        label = { Text(text = label, color = Color.Black) },
-        modifier = Modifier.fillMaxWidth(),
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
-//        colors = TextFieldDefaults.textFieldColors(
-//            // using predefined Color
-//            textColor = Color.Black,
-//            // using our own colors in Res.Values.Color
-//            focusedBorderColor = colorResource(id = R.color.black),
-//            unfocusedBorderColor = colorResource(id = R.color.black),
-//            cursorColor = colorResource(id = R.color.black),
-//            focusedLabelColor = colorResource(id = R.color.black),
-//            unfocusedLabelColor = colorResource(id = R.color.black),
-//        )
-    )
-}
-
-
-@Preview
-@Composable
-fun WishTestFieldPrev() {
-    WishTextField(label = "text", value = "text", onValueChanged = {})
-}
 
