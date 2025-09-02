@@ -47,6 +47,8 @@ fun HomeView(
 
     val context = LocalContext.current
 
+    val wishlist = viewModel.getAllWishes.collectAsState(listOf())
+
 
     Scaffold(
         topBar = {
@@ -96,13 +98,14 @@ fun HomeView(
                 .padding(it)
                 .background(color = Color(0xFFECECEC))
         ) {
-//            items(
-//                wishlist
-//            ) { wish ->
-//                WishItem(wish = wish) {
+            items(
+                wishlist.value
+            ) { wish ->
+                WishItem(wish = wish) {
 //                    wishlistVM.remove(wish)
-//                }
-//            }
+                    navController.navigate(Screen.AddScreen.route + "/${wish.id}")
+                }
+            }
         }
     }
 }
