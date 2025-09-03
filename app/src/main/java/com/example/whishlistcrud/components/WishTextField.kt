@@ -1,6 +1,7 @@
-package com.example.whishlistcrud.Components
+package com.example.whishlistcrud.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -8,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.unit.dp
 
 @Composable
 fun WishTextField(
@@ -19,7 +21,7 @@ fun WishTextField(
         value = value,
         onValueChange = onValueChanged,
         label = { Text(text = label, color = Color.Black) },
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth().padding(12.dp, 4.dp),
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
 //        colors = TextFieldDefaults.textFieldColors(
 //            // using predefined Color
