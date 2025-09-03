@@ -5,6 +5,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.FlowColumn
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -37,6 +39,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
@@ -135,14 +138,16 @@ fun WishItem(wish: Wish, onDelete: (x: Wish) -> Unit, onClick: () -> Unit) {
             containerColor = Color.White,
         ),
     ) {
-        Row(modifier = Modifier.padding(16.dp)) {
-            Column {
+        Row(modifier = Modifier.padding(16.dp).fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+            Column(
+//                modifier = Modifier.background(Color.Red)
+            ) {
                 Text(text = wish.title, fontWeight = FontWeight.ExtraBold)
                 Text(text = wish.description)
             }
-            IconButton(onClick = { onDelete(wish) }) {
-                Icon(Icons.Filled.Clear, contentDescription = "Delete wish")
-            }
+                IconButton(onClick = { onDelete(wish) }) {
+                    Icon(Icons.Filled.Clear, contentDescription = "Delete wish")
+                }
         }
     }
 }
